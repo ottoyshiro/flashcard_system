@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="primary-color" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.flashcard_system_frontend.controllers.LoginController">
+    <center>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="702.0" prefWidth="402.0" spacing="10.0" stylesheets="@../../../css/style.css">
+                    <children>
+                        <Label text="Login" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Nirmala UI" size="32.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="20.0" />
+                            </padding>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="23.0" prefWidth="405.0" spacing="5.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="57.0" prefWidth="222.0">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="224.0" text="User:" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="usernameField" prefHeight="36.0" prefWidth="222.0" promptText="Your username" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="41.0" prefWidth="402.0" spacing="5.0">
+                            <children>
+                                <VBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="308.0">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="263.0" text="Password:" textAlignment="CENTER" textFill="WHITE">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="289.0" spacing="5.0">
+                                            <children>
+                                                <StackPane prefHeight="25.0" prefWidth="222.0">
+                                                    <children>
+                                                        <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="235.0" promptText="Your password" />
+                                                        <TextField fx:id="passwordVisibleField" prefHeight="25.0" prefWidth="222.0" promptText="Your password" visible="false" />
+                                                    </children>
+                                                </StackPane>
+                                                <Button fx:id="togglePasswordButton" mnemonicParsing="false" onAction="#togglePassword" prefHeight="17.0" prefWidth="36.0" styleClass="reset-button" textFill="WHITE" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <Label fx:id="feedbackLabel">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#handleLoginSubmit" prefHeight="30.0" prefWidth="222.0" styleClass="circle" stylesheets="@../../../css/style.css" text="Login">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                        <Label fx:id="registerButton" onMouseClicked="#goToRegister" text="Don't have an account?" textFill="#615e6a" underline="true">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                    <styleClass>
+                        <String fx:value="secondary-color" />
+                        <String fx:value="circle" />
+                    </styleClass>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,51 @@
+.primary-color {
+    -fx-background-color: #1F3F60;
+}
+
+.cyan-color {
+    -fx-background-color: #74D9E2;
+}
+
+.green-blue-color {
+    -fx-background-color: #59A9A4;
+}
+
+.orange-color {
+    -fx-background-color: #FF853B;
+}
+
+.green-lemon-color {
+    -fx-background-color: #A2D65D;
+}
+
+.blue-color {
+    -fx-background-color: #3C6A9E;
+}
+
+.secondary-color {
+    -fx-background-color: #120E20;
+}
+
+.primary-color-light {
+    -fx-background-color: #615E6A;
+}
+
+.circle {
+    -fx-background-radius: 15px;
+}
+
+.reset-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+}
+
+.create-flashcard-text {
+    -fx-fill: #fff;
+    -fx-cursor: hand;
+}
+
+.create-flashcard-text:hover {
+    -fx-fill: #8d8c8c;
+    -fx-cursor: hand;
+}
