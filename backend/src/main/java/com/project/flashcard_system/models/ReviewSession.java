@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewSession {
-    private UUID sesionId;
+    private UUID sessionId;
     private UUID userId;
     private List<Flashcard> flashcards;
     private int correctAnswers = 0;

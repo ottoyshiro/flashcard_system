@@ -9,6 +9,7 @@ module com.project.flashcard_system_frontend {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires org.kordamp.ikonli.fontawesome5;
+    requires javafx.base;
 
     opens com.project.flashcard_system_frontend to javafx.fxml;
     opens com.project.flashcard_system_frontend.controllers to javafx.fxml;

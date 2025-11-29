@@ -57,27 +57,31 @@
                                                         <TextField fx:id="passwordVisibleField" prefHeight="25.0" prefWidth="222.0" promptText="Your password" visible="false" />
                                                     </children>
                                                 </StackPane>
-                                                <Button fx:id="togglePasswordButton" mnemonicParsing="false" onAction="#togglePassword" prefHeight="17.0" prefWidth="36.0" styleClass="reset-button" textFill="WHITE" />
+                                                <Button fx:id="togglePasswordButton" mnemonicParsing="false" onAction="#togglePassword" prefHeight="17.0" prefWidth="37.0" styleClass="reset-button" textFill="WHITE" />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                             </children>
                         </HBox>
-                        <Label fx:id="feedbackLabel">
+                        <Label fx:id="feedbackLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="224.0" textAlignment="CENTER">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#handleLoginSubmit" prefHeight="30.0" prefWidth="222.0" styleClass="circle" stylesheets="@../../../css/style.css" text="Login">
+                        <Button mnemonicParsing="false" onAction="#handleLoginSubmit" prefHeight="30.0" prefWidth="222.0" stylesheets="@../../../css/style.css" text="Login">
                             <VBox.margin>
-                                <Insets top="20.0" />
+                                <Insets />
                             </VBox.margin>
                             <font>
                                 <Font size="14.0" />
                             </font>
+                     <styleClass>
+                        <String fx:value="circle" />
+                        <String fx:value="button-style" />
+                     </styleClass>
                         </Button>
-                        <Label fx:id="registerButton" onMouseClicked="#goToRegister" text="Don't have an account?" textFill="#615e6a" underline="true">
+                        <Label fx:id="registerButton" onMouseClicked="#goToRegister" styleClass="create-acc-label" text="Don't have an account?" textFill="#615e6a" underline="true">
                             <VBox.margin>
                                 <Insets top="15.0" />
                             </VBox.margin>

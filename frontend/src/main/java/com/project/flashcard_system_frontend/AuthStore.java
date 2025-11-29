@@ -12,10 +12,6 @@ public class AuthStore {
         return token;
     }
 
-    public static boolean isLoggedIn() {
-        return token != null && !token.isEmpty();
-    }
-
     public static void clear() {
         token = null;
     }

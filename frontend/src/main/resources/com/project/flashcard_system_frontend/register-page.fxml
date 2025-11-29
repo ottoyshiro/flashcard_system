@@ -79,30 +79,38 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Label>
-                                        <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="289.0" spacing="5.0">
+                                        <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="317.0" spacing="5.0">
                                             <children>
                                                 <StackPane prefHeight="25.0" prefWidth="222.0">
                                                     <children>
-                                                        <PasswordField fx:id="confirmPasswordField" prefHeight="36.0" prefWidth="222.0" promptText="Repeat your password" />
+                                                        <PasswordField fx:id="confirmPasswordField" prefHeight="25.0" prefWidth="257.0" promptText="Repeat your password" />
                                                         <TextField fx:id="confirmPasswordVisibleField" promptText="Repeat your password" visible="false" />
                                                     </children>
                                                 </StackPane>
-                                                <Button fx:id="togglePasswordButton" mnemonicParsing="false" onAction="#togglePassword" prefHeight="17.0" prefWidth="36.0" styleClass="reset-button" textFill="WHITE" />
+                                                <Button fx:id="togglePasswordButton" mnemonicParsing="false" onAction="#togglePassword" prefHeight="17.0" prefWidth="37.0" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="reset-button" />
+                                          <String fx:value="button" />
+                                       </styleClass></Button>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                             </children>
                         </HBox>
-                        <Label fx:id="feedbackLabel" textFill="#ff7c7c">
+                        <Label fx:id="feedbackLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="225.0" textAlignment="CENTER" textFill="WHITE">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="32.0" prefWidth="222.0" styleClass="circle" text="Create account">
+                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="32.0" prefWidth="222.0" text="Create account">
                             <VBox.margin>
-                                <Insets bottom="20.0" top="20.0" />
+                                <Insets bottom="20.0" />
                             </VBox.margin>
+                     <styleClass>
+                        <String fx:value="circle" />
+                        <String fx:value="button-style" />
+                     </styleClass>
                         </Button>
                     </children>
                 </VBox>

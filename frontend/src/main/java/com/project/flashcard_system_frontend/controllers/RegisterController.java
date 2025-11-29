@@ -1,6 +1,8 @@
 package com.project.flashcard_system_frontend.controllers;
 
+import com.project.flashcard_system_frontend.AnimationFeedback;
 import com.project.flashcard_system_frontend.service.BackendClient;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,9 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
-
-import java.io.IOException;
 
 public class RegisterController {
 
@@ -44,12 +45,21 @@ public class RegisterController {
     private boolean showingPassword = false;
     private FontIcon eyeIcon;
 
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     @FXML
     public void initialize() {
         eyeIcon = new FontIcon("fas-eye-slash");
         eyeIcon.setIconSize(20);
         togglePasswordButton.setGraphic(eyeIcon);
         eyeIcon.setIconColor(Paint.valueOf("#f1f5f9"));
+
+        togglePasswordButton.getStyleClass().add("button");
+        eyeIcon.getStyleClass().add("button-icon");
 
         passwordVisibleField.textProperty().bindBidirectional(passwordField.textProperty());
         confirmPasswordVisibleField.textProperty().bindBidirectional(confirmPasswordField.textProperty());
@@ -80,49 +90,48 @@ public class RegisterController {
 
         feedbackLabel.setTextFill(Paint.valueOf("#ff7c7c"));
         if (password.isEmpty() || confirmPassword.isEmpty() || username.isEmpty()) {
-            feedbackLabel.setText("Preencha todos os campos!");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "Fill all the fields!", "red-feedback", 3);
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            feedbackLabel.setText("As senhas não coincidem!");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "Passwords aren't the same!", "red-feedback", 3);
             return;
         }
 
         boolean success = BackendClient.registerUser(username, password);
         if(success) {
-            feedbackLabel.setTextFill(Paint.valueOf("#91ff7d"));
-            feedbackLabel.setText("Cadastro realizado com sucesso!");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "Register successful!", "green-feedback", 0.5);
             goToLogin();
         } else {
-            feedbackLabel.setTextFill(Paint.valueOf("#ffee8c"));
-            feedbackLabel.setText("Erro ao cadastrar. Usuário já existe.");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "User already exists!", "yellow-feedback", 3);
         }
-
-        //#ff7c7c vermelho
-        //#ffee8c amarelo
-        //#91ff7d verde
 
     }
 
     @FXML
     private void goToLogin() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/project/flashcard_system_frontend/login-page.fxml"));
-            Parent root = loader.load();
+        PauseTransition wait = new PauseTransition(Duration.seconds(1));
 
-            Stage stage = (Stage) createButton.getScene().getWindow();
+        wait.setOnFinished(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/project/flashcard_system_frontend/login-page.fxml"));
+                Parent root = loader.load();
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.sizeToScene();
-            stage.centerOnScreen();
+                LoginController controller = loader.getController();
+                controller.setStage(stage);
+                Scene scene = new Scene(root);
 
-            stage.show();
+                stage.setScene(scene);
+                stage.centerOnScreen();
+                stage.sizeToScene();
+                stage.show();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        wait.play();
     }
 
 

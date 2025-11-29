@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.flashcard_system_frontend.controllers.NewFlashcardController">
+
+    <center>
+        <HBox alignment="CENTER" styleClass="primary-color" stylesheets="@../../../css/style.css" BorderPane.alignment="CENTER">
+
+            <children>
+                <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="587.0" spacing="20" styleClass="secondary-color circle">
+               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="190.0">
+                  <children>
+                     <Button fx:id="arrowBackButton" mnemonicParsing="false" onAction="#goToFlashcardList" prefHeight="27.0" prefWidth="27.0">
+                        <styleClass>
+                           <String fx:value="reset-button" />
+                           <String fx:value="arrow-back" />
+                        </styleClass>
+                     </Button>
+      
+                          <!-- Título -->
+                          <Text fill="WHITE" text="Novo Flashcard" wrappingWidth="167.4296875">
+                              <font>
+                           <Font size="24" />
+                        </font>
+                          </Text>
+                  </children>
+               </HBox>
+
+                    <!-- Content -->
+                    <VBox prefWidth="565" spacing="10" styleClass="secondary-color circle">
+                        <Text fill="WHITE" text="Content">
+                            <font><Font size="18" /></font>
+                        </Text>
+                        <TextField fx:id="contentField" promptText="Digite o conteúdo" />
+                    </VBox>
+
+                    <!-- Subject -->
+                    <VBox prefWidth="565" spacing="10" styleClass="secondary-color circle">
+                        <Text fill="WHITE" text="Subject">
+                            <font><Font size="18" /></font>
+                        </Text>
+                        <TextField fx:id="subjectField" promptText="Digite o assunto" />
+                    </VBox>
+
+                    <!-- Answers -->
+                    <VBox prefWidth="565" spacing="10" styleClass="secondary-color circle">
+
+                        <Text fill="WHITE" text="Answers">
+                            <font><Font size="18" /></font>
+                        </Text>
+
+                        <!-- Respostas dinâmicas -->
+                        <VBox fx:id="answersBox" spacing="10" />
+
+                        <Button onAction="#addAnswerField" styleClass="button-style-secondary" text="+ Adicionar resposta" />
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets bottom="15.0" />
+                  </padding>
+                    </VBox>
+               <Label fx:id="feedback" alignment="CENTER" prefHeight="36.0" prefWidth="346.0" textAlignment="CENTER" />
+
+                    <!-- Botão salvar -->
+                    <Button fx:id="homePage" onAction="#handleSave" prefHeight="39.0" prefWidth="147.0" style="-fx-font-size: 16px;" styleClass="button-style-secondary" text="Salvar Flashcard" />
+
+                </VBox>
+            </children>
+
+        </HBox>
+    </center>
+
+</BorderPane>

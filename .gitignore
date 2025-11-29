@@ -22,3 +22,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Data files ###
+backend/data

@@ -38,15 +38,12 @@ public class BackendClient {
             }
 
             String responseBody = response.body().string();
-            System.out.println("LOGIN RESPONSE BODY: " + responseBody);
 
             // pegar o token do JSON
             com.fasterxml.jackson.databind.ObjectMapper mapper =
                     new com.fasterxml.jackson.databind.ObjectMapper();
 
             String token = mapper.readTree(responseBody).get("token").asText();
-
-            System.out.println("TOKEN PARSED: " + token);
 
             // salvar no AuthStore
             AuthStore.setToken(token);

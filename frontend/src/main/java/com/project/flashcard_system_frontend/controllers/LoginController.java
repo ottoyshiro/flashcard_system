@@ -1,6 +1,8 @@
 package com.project.flashcard_system_frontend.controllers;
 
+import com.project.flashcard_system_frontend.AnimationFeedback;
 import com.project.flashcard_system_frontend.service.BackendClient;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
@@ -38,12 +41,20 @@ public class LoginController {
     private boolean showingPassword = false;
     private FontIcon eyeIcon;
 
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     @FXML
     public void initialize() {
         eyeIcon = new FontIcon("fas-eye-slash");
         eyeIcon.setIconSize(20);
         togglePasswordButton.setGraphic(eyeIcon);
         eyeIcon.setIconColor(Paint.valueOf("#f1f5f9"));
+        togglePasswordButton.getStyleClass().add("button");
+        eyeIcon.getStyleClass().add("button-icon");
 
         passwordVisibleField.textProperty().bindBidirectional(passwordField.textProperty());
     }
@@ -67,25 +78,18 @@ public class LoginController {
         String password = passwordField.getText();
         String username = usernameField.getText();
 
-        feedbackLabel.setTextFill(Paint.valueOf("#ff7c7c"));
         if (password.isEmpty() || username.isEmpty()) {
-            feedbackLabel.setText("Preencha todos os campos!");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "Fill all the fields!", "red-feedback", 3);
             return;
         }
 
         boolean success = BackendClient.loginUser(username, password);
         if(success) {
-            feedbackLabel.setTextFill(Paint.valueOf("#91ff7d"));
-            feedbackLabel.setText("Login realizado com sucesso!");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "Login successful!", "green-feedback", 0.5);
             goToHomePage();
         } else {
-            feedbackLabel.setTextFill(Paint.valueOf("#ffee8c"));
-            feedbackLabel.setText("Erro ao logar, usuário e/ou senha inválido(s)!");
+            AnimationFeedback.showTimedFeedback(feedbackLabel, "User and/or password invalid(s)!", "yellow-feedback", 3);
         }
-
-        //#ff7c7c vermelho
-        //#ffee8c amarelo
-        //#91ff7d verde
 
     }
 
@@ -95,7 +99,8 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/project/flashcard_system_frontend/register-page.fxml"));
             Parent root = loader.load();
 
-            Stage stage = (Stage) registerButton.getScene().getWindow();
+            RegisterController controller = loader.getController();
+            controller.setStage(stage);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -111,21 +116,28 @@ public class LoginController {
 
     @FXML
     private void goToHomePage() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/project/flashcard_system_frontend/flashcard-page.fxml"));
-            Parent root = loader.load();
 
-            Stage stage = (Stage) registerButton.getScene().getWindow();
+        PauseTransition wait = new PauseTransition(Duration.seconds(1));
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.sizeToScene();
-            stage.show();
+        wait.setOnFinished(e -> {
+             try {
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/project/flashcard_system_frontend/flashcard-page.fxml"));
+                 Parent root = loader.load();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                 FlashcardListController controller = loader.getController();
+                 controller.setStage(stage);
+                 Scene scene = new Scene(root);
+
+                 stage.setScene(scene);
+                 stage.centerOnScreen();
+                 stage.sizeToScene();
+                 stage.show();
+             } catch (Exception ex) {
+                 ex.printStackTrace();
+             }
+        });
+
+        wait.play();
     }
 }
 
